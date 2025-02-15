@@ -12,7 +12,8 @@ class CoasController extends Controller
      */
     public function index()
     {
-        //
+        $coas = Coas::all();
+        return response()->json($coas);
     }
 
     /**
@@ -28,15 +29,23 @@ class CoasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'base' => 'required|in:debit,credit',
+        ]);
+
+        $coa = Coas::create($request->all());
+
+        return response()->json(['message' => 'COA created successfully', 'data' => $coa], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Coas $coas)
+    public function show($id)
     {
-        //
+        $coa = Coas::findOrFail($id);
+        return response()->json($coa);
     }
 
     /**
@@ -50,16 +59,27 @@ class CoasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Coas $coas)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'sometimes|required|string|max:255',
+            'base' => 'sometimes|required|in:debit,credit',
+        ]);
+
+        $coa = Coas::findOrFail($id);
+        $coa->update($request->all());
+
+        return response()->json(['message' => 'COA updated successfully', 'data' => $coa]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Coas $coas)
+    public function destroy($id)
     {
-        //
+        $coa = Coas::findOrFail($id);
+        $coa->delete();
+
+        return response()->json(['message' => 'COA deleted successfully']);
     }
 }
