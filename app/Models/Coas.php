@@ -19,4 +19,5 @@ class Coas extends Model
     protected $casts = [
         'base' => 'string',
     ];
+
 }
