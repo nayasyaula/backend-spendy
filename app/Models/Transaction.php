@@ -27,4 +27,15 @@ class TransactionDetail extends Model
     {
         return $this->belongsTo(Transaction::class, 'transaction_id');
     }
+
+    public function coaFrom()
+    {
+        return $this->belongsTo(Coas::class, 'coa_from' , 'id');
+    }
+
+    public function coaTo()
+    {
+        return $this->belongsTo(Coas::class, 'coa_to' , 'id');
+    }
 }
+
