@@ -22,8 +22,14 @@ class AuthController extends Controller {
     }
 
     public function profile() {
-        return response()->json(Auth::user());
-    }
+        $user = Auth::user();
+    
+        if (!$user) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+    
+        return response()->json($user);
+    }    
 
     public function logout() {
         Auth::logout();
