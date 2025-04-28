@@ -30,12 +30,12 @@ class TransactionDetail extends Model
 
     public function coaFrom()
     {
-        return $this->belongsTo(Coas::class, 'coa_from' , 'id');
+        return $this->belongsTo(Coas::class, 'coa_from');
     }
 
     public function coaTo()
     {
-        return $this->belongsTo(Coas::class, 'coa_to' , 'id');
+        return $this->belongsTo(Coas::class, 'coa_to');
     }
 }
 
