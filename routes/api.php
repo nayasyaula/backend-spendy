@@ -20,9 +20,6 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/{id}', [TransactionController::class, 'update']); // Update a transaction
         Route::delete('/{id}', [TransactionController::class, 'destroy']); // Delete a transaction
     });
-    // Route untuk mengambil laporan transaksi dan menyimpannya ke database
-    Route::get('/report', [ReportController::class, 'index']);
-
     // Route untuk mengambil semua laporan transaksi yang telah disimpan
     Route::get('/reports', [ReportController::class, 'showReports']);
 });
